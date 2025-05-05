@@ -77,7 +77,7 @@ float INA3221::getShuntVoltage(uint8_t channel) {
   if (channel > 2)
     return -1;
   int16_t val = _readRegister(INA3221_SHUNT_VOLTAGE(channel));
-  return (val >> 3) * 40e-6; //  fixed 40 uV  (Page 6)
+  return ((val / 8) * 40.0e-6); //  fixed 40 uV  (Page 6)
 }
 
 float INA3221::getCurrent(uint8_t channel) {
